@@ -44,10 +44,9 @@
 .grid-container {
 
   display: grid;
-  
-  /* Three columns with equal width */
   gap: 10px;
-  /* Space between grid items */
+  grid-template-columns: repeat(3, 1fr);
+
 }
 
 /* Style grid items */

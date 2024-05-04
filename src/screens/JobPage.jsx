@@ -59,7 +59,7 @@ const JobsPage = () => {
     return (
         <div className='grid-container'>
             {data.map((item, index) => (
-                <div className='grid-item' key={index}>
+                <div className='grid-item' style={{width:330}}  key={index}>
                     <JobCard item={item} />
                 </div>
             ))}

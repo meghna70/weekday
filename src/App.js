@@ -5,7 +5,7 @@ import JobsPage from './screens/JobPage';
 
 function App() {
   return (
-    <div>
+    <div style={{padding:60}} className="lexend-normal">
    <JobsPage/>
     </div>
   );
