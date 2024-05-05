@@ -42,13 +42,26 @@
 }
 
 .grid-container {
-
   display: grid;
   gap: 10px;
   grid-gap: 30px;
-  grid-template-columns: repeat(3, 1fr);
-
+  grid-template-columns: repeat(3, 1fr); /* Default: three columns */
 }
+
+/* Media query for medium screens */
+@media (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+  }
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr); /* Single column on small screens */
+  }
+}
+
 
 /* Style grid items */
 .grid-item {

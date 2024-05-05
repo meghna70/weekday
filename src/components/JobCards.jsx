@@ -1,11 +1,14 @@
 import React from 'react'
 import { Color } from '../GlobalStyle'
 import { Button } from '@mui/material'
-function JobCard(props) {
-console.log("props:", props)    
+function JobCard(props) { 
     return (
-        <div style={{ position: "relative", padding: 16, height: 550, width: 318, borderRadius: 10, borderColor:Color.Midgrey, boxShadow: "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px" }}>
+        <div className='hover-div' style={{ position: "relative", padding: 16, height: 570, width: 318, borderRadius: 10, borderColor:Color.Midgrey, boxShadow: "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px" }}>
+            <div style={{borderRadius:20, fontSize:10, fontWeight:300, margin:"10px 0px", boxShadow: "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px", width:"35%", padding:"5px 8px"}}>
+            ⏳ Posted 10 days ago
+               </div>
             <div style={{ display: "flex", flexDirection: "row", justifyItems: "center", alignItems: "center" }}>
+             
                 <div>
                     <img style={{ borderRadius: 0 }} src={props?.item.logoUrl} height={40} width={35} alt="Logo" />
                 </div>
@@ -21,10 +24,10 @@ console.log("props:", props)
                 {props?.item?.jobDetailsFromCompany}
                 
             </div>
-            <div className='blurred-div opacity-800' style={{ position: "absolute", bottom: 190 }}>
+            <div className='blurred-div opacity-800' style={{ position: "absolute", bottom: 170 }}>
 
             </div>
-            <div style={{ color: Color.PrimaryBlue1, position: "relative", zIndex: "2", bottom: 30, left: 100, cursor: "pointer",  }}>
+            <div style={{ color: Color.PrimaryBlue1, position: "relative", zIndex: "2", bottom: 30, left: 100, fontWeight:300, cursor: "pointer",  }}>
                 View Job
             </div>
             { props?.item?.minExp && <div>
@@ -33,7 +36,7 @@ console.log("props:", props)
             </div>}
             <div style={{ position: "absolute", bottom: 10 }}>
                 <Button onClick={()=> window.open(props.item?.jdLink, '_blank')} variant="contained" color="success" style={{ textTransform: "none", padding: "8px 18px", width: 310, backgroundColor:Color.PrimaryTheme, fontFamily: "Lexend"}} >
-                    <text style={{color:"black", fontWeight:700, fontSize:15}}>Easy Apply</text>
+                    <text style={{color:"black", fontWeight:700, fontSize:15}}>⚡ Easy Apply</text>
                 </Button>
                 <Button variant="contained" color="success" style={{ textTransform: "none", padding: "8px 18px", width: 310, backgroundColor:Color.SecondaryTheme, fontFamily: "Lexend", marginTop:10}} >
                     <text style={{color:"#fff", fontWeight:300, fontSize:15}}>Unlock Referral Asks</text>

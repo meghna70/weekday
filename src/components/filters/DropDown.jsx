@@ -10,7 +10,6 @@ function sleep(duration) {
 }
 
 const updateFilter = (params, props) => {
-    console.log("update:", params, props);
   props.setFilters({ ...props.filters, [props.filter]: params});
  
 };
@@ -19,8 +18,7 @@ const DropDown = (props) => {
   const [open, setOpen] = useState(false);
   const [options, setOptions] = useState([]);
   const loading = open && options.length === 0;
-  console.log("flters:", props?.filters)
-  useEffect(() => {
+   useEffect(() => {
     let active = true;
 
     if (!loading) {

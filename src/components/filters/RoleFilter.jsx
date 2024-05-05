@@ -10,7 +10,6 @@ export default function RoleFilter(props) {
 
     const getData = () => {
         if (props.placeholder === "Roles") {
-            console.log("in roles:", props?.data.map((item) => item.jobRole) )
             const uniqueJobRoles = [...new Set(props?.data.map((item) => item.jobRole))];
             setOptions(uniqueJobRoles);
         } else if (props.placeholder === "Number of Employees") {
@@ -19,8 +18,7 @@ export default function RoleFilter(props) {
     };
 
     const updateFilter = (params) => {
-        console.log("update:", params, props);
-        props.setFilters({ ...props.filters, [props.filter]: params });
+       props.setFilters({ ...props.filters, [props.filter]: params });
     }
 
     React.useEffect(() => {
