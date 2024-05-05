@@ -2,9 +2,9 @@ import React from 'react'
 import { Color } from '../GlobalStyle'
 import { Button } from '@mui/material'
 function JobCard(props) {
-  
+console.log("props:", props)    
     return (
-        <div className='hover-div' style={{ position: "relative", padding: 16, height: 550, width: 318, borderRadius: 10, borderColor:Color.Midgrey, boxShadow: "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px" }}>
+        <div style={{ position: "relative", padding: 16, height: 550, width: 318, borderRadius: 10, borderColor:Color.Midgrey, boxShadow: "rgba(0, 0, 0, 0.25) 0px 1px 4px 0px" }}>
             <div style={{ display: "flex", flexDirection: "row", justifyItems: "center", alignItems: "center" }}>
                 <div>
                     <img style={{ borderRadius: 0 }} src={props?.item.logoUrl} height={40} width={35} alt="Logo" />

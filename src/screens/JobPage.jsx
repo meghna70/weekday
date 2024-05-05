@@ -14,7 +14,7 @@ const JobsPage = () => {
         Number_of_Employees: [],
         Experience: null,
         minSalary: null,
-        remote: null,
+        Remote: null,
         companyName: null
     })
     const limit = 10; // Adjust the limit as needed
@@ -79,24 +79,50 @@ const JobsPage = () => {
 
     const filterData = () => {
         setIsFilter(false);
+      
         let filteredResult = data;
-        let filter_count = 0;
+        let filtersApplied = false; // Flag to track if any filters are applied
+      
         Object.keys(filters).forEach((key) => {
-            const value = filters[key];
-
-            if (value !== null && (Array.isArray(value) && value.length > 0)) {
-                setIsFilter(true);
-                filteredResult = filteredResult.filter((item) => {
-                    return Array.isArray(value) ? value.includes(item[key]) : value === item[key];
-                });
-            } else {
-                filter_count += 1;
+          const value = filters[key];
+          console.log("keyss:", key);
+      
+          if ((value !== null && !Array.isArray(value)) || (Array.isArray(value) && value.length > 0)) {
+            filtersApplied = true; // Set the flag since a filter is applied
+      
+            if (key === "Roles") {
+              filteredResult = filteredResult.filter((item) => {
+                return value.includes(item.jobRole);
+              });
+            } else if (key === "Experience") {
+              filteredResult = filteredResult.filter((item) => {
+                return value <= item.minExp;
+              });
+            } else if (key === "minSalary") {
+              filteredResult = filteredResult.filter((item) => {
+                return value <= item.minJdSalary;
+              });
+            } else if (key === "Remote") {
+              filteredResult = filteredResult.filter((item) => {
+                if (value !== "remote") {
+                  return item?.location !== "remote";
+                } else {
+                  return item?.location === "remote";
+                }
+              });
             }
+          }
         });
-            setFilteredData(filteredResult);
-    };
+      
+        if (filtersApplied) {
+          setIsFilter(true); // Set isFilter to true if any filter is applied
+        }
+      
+        setFilteredData(filteredResult);
+      };
+      
 
-
+  console.log("filtered data:", isFilter, filteredData);
     return (
         <div>
             <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: 10 }}>
@@ -108,18 +134,18 @@ const JobsPage = () => {
                 <TextField id="outlined-basic" label="Search Company Name" variant="outlined" value={filters.companyName || ''} onChange={handleCompanyNameChange} />
             </div>
             <div className='grid-container'>
-                { isFilter ?
-                  filteredData?.map((item, index) => (
-                    <div className='grid-item' style={{ width: 330 }} key={index}>
-                        <JobCard item={item} />
-                    </div>
-                ))
-                :
-                data?.map((item, index) => (
-                    <div className='grid-item' style={{ width: 330 }} key={index}>
-                        <JobCard item={item} />
-                    </div>
-                ))}
+                {isFilter ?
+                    filteredData?.map((item, index) => (
+                        <div className='grid-item' style={{ width: 330 }} key={index}>
+                            <JobCard item={item} />
+                        </div>
+                    ))
+                    :
+                    data?.map((item, index) => (
+                        <div className='grid-item' style={{ width: 330 }} key={index}>
+                            <JobCard item={item} />
+                        </div>
+                    ))}
                 {isLoading && <CircularProgress />}
                 {/* Show loading indicator */}
             </div>
